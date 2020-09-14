@@ -46,7 +46,7 @@ class SessionController extends ControllerBase
             $password = $this->request->getPost('password');
 
             $user = Users::findFirst([
-                "(email = :email: OR username = :email:) AND password = :password: AND active = Y",
+                "(email = :email: OR username = :email:) AND password = :password: AND active = 'Y'",
                 'bind' => ['email' => $email, 'password' => sha1($password)]
             ]);
             if ($user != false) {
