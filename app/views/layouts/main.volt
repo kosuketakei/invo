@@ -1,7 +1,3 @@
-<!--このファイルが共通のやつ-->
-<!--layouts/companies.volt,invoices.volt, products.volt, progucttypes.volt以外-->
-<!--このlayouts/各.voltのviewがしたのcontent()に入る-->
-
 <nav class="navbar navbar-default navbar-inverse" role="navigation">
     <div class="container-fluid">
         <div class="navbar-header">
