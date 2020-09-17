@@ -47,6 +47,12 @@ class InfoController extends ControllerBase{
     public function specialAction(){
         $username = $this->session->get("username");
         $this->view->username = $username;
+
+
+        $users = Users::find("username = '$username'");
+        
+        $this->view->users = $users;
+        
         
     }
     
