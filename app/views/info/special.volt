@@ -20,7 +20,10 @@
             <td>{{user.username}}</td>
             <td>{{user.password}}</td>
             <td>{{user.email}}</td>
-        </tr>>
+        </tr>
     </tbody>
+    <p width="7%">{{ link_to("info/editName/" ~ user.id, '<i class="glyphicon glyphicon-edit"></i> Edit your name', "class": "btn btn-default") }}</p>
+    <p width="7%">{{ link_to("info/editPassword/" ~ user.id, '<i class="glyphicon glyphicon-edit"></i> Edit your password', "class": "btn btn-default") }}</p>
+    <p width="7%">{{ link_to("info/delete/" ~ user.id, '<i class="glyphicon glyphicon-remove"></i> Delete', "class": "btn btn-default") }}</p>
 </table>
 {% endfor %}

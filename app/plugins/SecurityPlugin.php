@@ -66,7 +66,7 @@ class SecurityPlugin extends Plugin
 				'session'    => ['index', 'register', 'start', 'end'],
 				'contact'    => ['index', 'send'],
 				'tag'        => ['index', 'search', 'new', 'edit', 'save', 'create', 'delete'],
-				'info'       => ['index', 'logined', 'special']
+				'info'       => ['index', 'logined', 'special', 'editName', 'save']
 				
 			];
 			foreach ($publicResources as $resource => $actions) {

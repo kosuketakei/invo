@@ -28,6 +28,7 @@ class InfoController extends ControllerBase{
                 "(username = :username:) AND password = :password:",
                 'bind' => ['username' => $username, 'password' => sha1($password)]
             ]);
+
             if ($user != false) {
 
                 $this->session->set("username", $username);
@@ -47,13 +48,59 @@ class InfoController extends ControllerBase{
     public function specialAction(){
         $username = $this->session->get("username");
         $this->view->username = $username;
+        $this->flash->success("Successfully logged in!");
 
-
+        #ログインした時のusernameを元にレコードを取り出す
         $users = Users::find("username = '$username'");
         
         $this->view->users = $users;
         
         
     }
+    public function editNameAction($id)
+    {
+        if (!$this->request->isPost()) {
+
+            $users = Users::findFirstById($id);
+            if (!$users) {
+                $this->flash->error("User to edit was not found");
+
+                return $this->dispatcher->forward(
+                    [
+                        "controller" => "info",
+                        "action"     => "index",
+                    ]
+                );
+            }
+
+            $this->view->form = new EditNameForm($users, ['edit' => true]);
+            $this->session->set("user", $users);
+        }
+    }
+    public function saveAction(){
+        if ($this->request->isPost()){
+            $name = $this->request->getPost("name");
+            $user = $this->session->get("user");
+            $user->name = $name;
+
+            if ($user->save() == false){
+                foreach ($user->getMessages() as $message) {
+                    $this->flash->error((string) $message);
+                }
+            }else{
+                $this->flash->success('Your Name is updated!');
+
+                return $this->dispatcher->forward(
+                    [
+                        "controller" => "info",
+                        "action"     => "special",
+                    ]
+                );
+            }
+
+        }
+    }
+
+    
     
 }

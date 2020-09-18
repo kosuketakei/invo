@@ -16,7 +16,7 @@
     </div>
 
     <div class="clearfix">
-        {{ submit_button("Submmit", "class": "btn btn-primary") }}
+        {{ submit_button("Login", "class": "btn btn-primary") }}
     </div>
 
 </div>
