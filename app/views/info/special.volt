@@ -24,6 +24,6 @@
     </tbody>
     <!--~user.idでidをパラメータとして渡す(primary key だから)-->
     <p width="7%">{{ link_to("info/editName/" ~ user.id, '<i class="glyphicon glyphicon-edit"></i> Edit your name', "class": "btn btn-default") }}</p>
-    <p width="7%">{{ link_to("info/delete/" ~ user.id, '<i class="glyphicon glyphicon-remove"></i> Delete', "class": "btn btn-default") }}</p>
+    <p width="7%">{{ link_to("info/delete/" ~ user.id, '<i class="glyphicon glyphicon-remove"></i> Delete your account', "class": "btn btn-default") }}</p>
 </table>
 {% endfor %}

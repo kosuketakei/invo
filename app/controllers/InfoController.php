@@ -67,7 +67,7 @@ class InfoController extends ControllerBase{
                 return $this->dispatcher->forward(
                     [
                         "controller" => "info",
-                        "action"     => "index",
+                        "action"     => "error",
                     ]
                 );
             }
@@ -80,6 +80,15 @@ class InfoController extends ControllerBase{
         if ($this->request->isPost()){
             $name = $this->request->getPost("name");
             $user = $this->session->get("user");
+            if ($user->name == $name){
+                $this->flash->error("Same name input as you have registered before");
+                return $this->dispatcher->forward(
+                    [
+                        "controller" => "info",
+                        "action"     => "error",
+                    ]
+                    );
+            }
             $user->name = $name;
 
             if ($user->save() == false){
@@ -88,15 +97,14 @@ class InfoController extends ControllerBase{
                 }
             }else{
                 $this->flash->success('Your Name was updated!');
-
+    
                 return $this->dispatcher->forward(
                     [
-                        "controller" => "info",
-                        "action"     => "special",
+                            "controller" => "info",
+                            "action"     => "special",
                     ]
                 );
             }
-
         }
     }
     public function deleteAction($id){
@@ -107,7 +115,7 @@ class InfoController extends ControllerBase{
             return $this->dispatcher->forward(
                 [
                     "controller" => "info",
-                    "action"     => "logined",
+                    "action"     => "error",
                 ]
             );
         }
@@ -120,7 +128,7 @@ class InfoController extends ControllerBase{
             return $this->dispatcher->forward(
                 [
                     "controller" => "info",
-                    "action"     => "logined",
+                    "action"     => "error",
                 ]
             );
         }
@@ -133,6 +141,9 @@ class InfoController extends ControllerBase{
                 "action"     => "index",
             ]
         );
+    }
+    public function errorAction(){
+
     }
 
     
