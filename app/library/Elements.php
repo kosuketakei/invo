@@ -27,6 +27,10 @@ class Elements extends Component
                 'caption' => 'Contact',
                 'action' => 'index'
             ],
+            'info' => [
+                'caption' => 'Info',
+                'action' => 'index'
+            ],
         ],
         'navbar-right' => [
             'session' => [
@@ -61,6 +65,11 @@ class Elements extends Component
             'controller' => 'invoices',
             'action' => 'profile',
             'any' => false
+        ],
+        'Tag' => [
+            'controller' => 'tag',
+            'action' => 'index',
+            'any' => true
         ]
     ];
 

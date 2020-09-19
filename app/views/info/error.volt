@@ -1,0 +1,1 @@
+{{ link_to("info/special" , "&larr; Go Back") }}
