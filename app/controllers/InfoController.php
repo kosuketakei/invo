@@ -48,7 +48,6 @@ class InfoController extends ControllerBase{
     public function specialAction(){
         $username = $this->session->get("username");
         $this->view->username = $username;
-        $this->flash->success("Successfully logged in!");
 
         #ログインした時のusernameを元にレコードを取り出す
         $users = Users::find("username = '$username'");
@@ -88,7 +87,7 @@ class InfoController extends ControllerBase{
                     $this->flash->error((string) $message);
                 }
             }else{
-                $this->flash->success('Your Name is updated!');
+                $this->flash->success('Your Name was updated!');
 
                 return $this->dispatcher->forward(
                     [
@@ -99,6 +98,41 @@ class InfoController extends ControllerBase{
             }
 
         }
+    }
+    public function deleteAction($id){
+        $users = Users::findFirstById($id);
+        if (!$users) {
+            $this->flash->error("User was not found");
+
+            return $this->dispatcher->forward(
+                [
+                    "controller" => "info",
+                    "action"     => "logined",
+                ]
+            );
+        }
+
+        if (!$users->delete()) {
+            foreach ($users->getMessages() as $message) {
+                $this->flash->error($message);
+            }
+
+            return $this->dispatcher->forward(
+                [
+                    "controller" => "info",
+                    "action"     => "logined",
+                ]
+            );
+        }
+
+        $this->flash->success("User was deleted");
+
+        return $this->dispatcher->forward(
+            [
+                "controller" => "info",
+                "action"     => "index",
+            ]
+        );
     }
 
     
