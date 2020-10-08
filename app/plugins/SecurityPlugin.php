@@ -104,7 +104,8 @@ class SecurityPlugin extends Plugin
 	 * @return bool
 	 */
 	public function beforeExecuteRoute(Event $event, Dispatcher $dispatcher)
-	{
+	//eventはどこで使われる？引数に必須ぽい
+	{//beforeExecuteRoute(controllerやactionが実行される前)だからここでroleを割り当てる
 		$auth = $this->session->get('auth');
 		if (!$auth){
 			$role = 'Guests';
