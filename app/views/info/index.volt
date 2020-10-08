@@ -1,4 +1,4 @@
-<h1>Users of Invo are only authorized to access to sepecial pages...</h1>
+<h1>Only users of Invo are authorized to access to setting pages...</h1>
 
 {{ form("info/logined", "autocomplete": "off") }}
 
